@@ -64,18 +64,18 @@ public class PlayerController : MonoBehaviour {
         if (!up && right)
         {
             rb.transform.position = Vector3.MoveTowards(rb.transform.position, target3.position, step);
-            rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, target3.transform.rotation,1.0f);
+            rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, target3.transform.rotation, rotationStep);
             //rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, new Quaternion(0,0,45,0), rotationStep);
         }
         else if (!up && left)
         {
             rb.transform.position = Vector3.MoveTowards(rb.transform.position, target4.position, step);
-            rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, target4.transform.rotation, 1.0f);
+            rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, target4.transform.rotation, rotationStep);
         }
         else if (up && left)
         {
             rb.transform.position = Vector3.MoveTowards(rb.transform.position, target5.position, step);
-            rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, target5.transform.rotation, 1.0f);
+            rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, target5.transform.rotation, rotationStep);
         }
         else if (up && right)
         {
