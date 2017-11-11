@@ -1,26 +1,93 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
 
 public class LevelBehavior : MonoBehaviour {
 
 	public Transform block;
-	private List<Transform> blocks;
+	public int layersOverall = 5;
+	public int minBlocksPerLayer = 1;
+	public int maxBlocksPerLayer = 2;
+	public int minSpeed = 1;
+	public int maxSpeed = 5;
+	public int minRangeBetweenBlocks = 10;
+	public int maxRangeBetweenBlocks = 20;
+	//TODO (dmartin): Add time after the level ends
+	// public int finishTime = 60;
+
+	private List<List<Transform>> layers;
+	private float currSpeed;
 
 	void Start () {
-		blocks = new List<Transform> ();
+		layers = new List<List<Transform>> ();
+		int lastRange = 0;
+		currSpeed = minSpeed;
 
-		blocks.Add (Instantiate (block, new Vector3(0, 0, 120), Quaternion.identity));
-		blocks [0].Rotate (new Vector3 (0, 0, Random.Range (0, 5) * 60));
+		for (var layerNr = 0; layerNr < layersOverall; ++layerNr) {
+			var layer = new List<Transform> ();
+			var blocksPerLayer = Random.Range (minBlocksPerLayer, maxBlocksPerLayer);
+
+			lastRange = Random.Range (minRangeBetweenBlocks, maxRangeBetweenBlocks) + lastRange;
+
+			var existingblockRotations = new List<Vector3> ();
+			for (var blockNr = 0; blockNr < blocksPerLayer; ++blockNr) {
+				layer.Add (Instantiate (block, new Vector3 (0, 0, lastRange), Quaternion.identity));
+
+				Vector3 rotation;
+				do {
+					rotation = new Vector3 (0, 0, Random.Range (0, 6) * 60);
+				} while(existingblockRotations.Contains (rotation));
+
+				layer[blockNr].Rotate (rotation);
+			}
+
+			layers.Add (layer);
+		}
 	}
 
 	void FixedUpdate () {
-		//blocks [0].transform.position -= new Vector3 (0, 0, 1);
-		if (Input.GetKeyDown ("up")) {
-			// Destroy GameObject
-			if (blocks.Count > 0) {
-				Destroy (blocks [0].gameObject);
-				blocks.RemoveAt (0);
+		// Destroy oldObjects
+		foreach (var layer in layers) {
+			foreach (var block in layer) {
+				if (block.position.z < -1.3f) {
+					Destroy (block.gameObject);
+					layers.Remove (layer);
+				}
+			}
+		}
+
+		// Create new Objects
+		if (layers.Count < layersOverall) {
+			if (layers.Any()) {
+				var lastLayer = layers.LastOrDefault ();
+
+				if (lastLayer.Any()) {
+					var firstBlock = lastLayer.FirstOrDefault ();
+					var lastRange = Random.Range (minRangeBetweenBlocks, maxRangeBetweenBlocks) + firstBlock.position.z;
+					var layer = new List<Transform> ();
+					var blocksPerLayer = Random.Range (minBlocksPerLayer, maxBlocksPerLayer);
+
+					var existingblockRotations = new List<Vector3> ();
+					for (var blockNr = 0; blockNr < blocksPerLayer; ++blockNr) {
+						layer.Add (Instantiate (block, new Vector3 (0, 0, lastRange), Quaternion.identity));
+
+						Vector3 rotation;
+						do {
+							rotation = new Vector3 (0, 0, Random.Range (0, 6) * 60);
+						} while(existingblockRotations.Contains (rotation));
+
+						layer[blockNr].Rotate (rotation);
+					}
+
+					layers.Add (layer);
+				}
+			}
+		}
+
+		foreach (var layer in layers) {
+			foreach (var block in layer) {
+				block.transform.position -= new Vector3 (0, 0, currSpeed / 10);
 			}
 		}
 	}
