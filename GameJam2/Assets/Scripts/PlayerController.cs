@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
+	public Transform healthText;
     public Transform target;
     public Transform target2;
     public Transform target3;
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour {
     void Start () {
         // target.position = GameObject.Find("Spring1").transform.position;
         rb = this.GetComponent<Rigidbody>();
+		healthText.GetComponent<Text>().text = "Lifes: " + GameSettings.playerLifes;
     }
 	
 	// Update is called once per frame
@@ -92,12 +95,21 @@ public class PlayerController : MonoBehaviour {
             rb.transform.position = Vector3.MoveTowards(rb.transform.position, target.position, step);
             rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, target.transform.rotation, rotationStep);
         }
-
-
-
-
-
-
     }
 
+	void OnTriggerEnter(Collider col)
+	{
+		// Reduce Player Life
+		--GameSettings.playerLifes;
+
+		// Update Life Text
+		healthText.GetComponent<Text>().text = "Lifes: " + GameSettings.playerLifes;
+
+		//TODO (dmartin): Load Game Over Screen
+		/*
+		if (GameSettings.playerLifes < 1) {
+			Application.LoadLevel("Levels/EndingScene");
+		}
+		*/
+	}
 }
