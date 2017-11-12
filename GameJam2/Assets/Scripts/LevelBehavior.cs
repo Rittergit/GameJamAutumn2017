@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class LevelBehavior : MonoBehaviour {
-
-	public Transform block;
+	
+	public Transform zoomTarget;
+	public Transform camera;
+	public int zoomSpeed = 5;
+	public List<Transform> block;
 	public int layersOverall = 5;
 	public int minBlocksPerLayer = 1;
 	public int maxBlocksPerLayer = 2;
@@ -32,7 +35,7 @@ public class LevelBehavior : MonoBehaviour {
 
 			var existingblockRotations = new List<Vector3> ();
 			for (var blockNr = 0; blockNr < blocksPerLayer; ++blockNr) {
-				layer.Add (Instantiate (block, new Vector3 (0, 0, lastRange), Quaternion.identity));
+				layer.Add (Instantiate (block[Random.Range(0, block.Count)], new Vector3 (0, 0, lastRange), Quaternion.identity));
 
 				Vector3 rotation;
 				do {
@@ -51,7 +54,7 @@ public class LevelBehavior : MonoBehaviour {
 		for (var layerNr = 0; layerNr < layers.Count; ++layerNr) {
 			var removeLayer = false;
 			foreach (var block in layers[layerNr]) {
-				if (block.position.z < -1.3f) {
+				if (block.position.z < -10f) {
 					Destroy (block.gameObject);
 					removeLayer = true;
 				}
@@ -75,7 +78,7 @@ public class LevelBehavior : MonoBehaviour {
 
 					var existingblockRotations = new List<Vector3> ();
 					for (var blockNr = 0; blockNr < blocksPerLayer; ++blockNr) {
-						layer.Add (Instantiate (block, new Vector3 (0, 0, lastRange), Quaternion.identity));
+						layer.Add (Instantiate (block[Random.Range(0, block.Count)], new Vector3 (0, 0, lastRange), Quaternion.identity));
 
 						Vector3 rotation;
 						do {
@@ -97,5 +100,12 @@ public class LevelBehavior : MonoBehaviour {
 				block.transform.Translate(new Vector3(0, 0, -(currSpeed / 10)));
 			}
 		}
+
+		ZoomOnStart ();
+	}
+
+	void ZoomOnStart() {
+		float step = zoomSpeed * Time.deltaTime;
+		camera.GetComponent<Camera>().transform.position = Vector3.MoveTowards(camera.GetComponent<Camera>().transform.position, zoomTarget.position, step);
 	}
 }

@@ -131,5 +131,5 @@ MonoBehaviour:
   target4: {fileID: 4107901507585286, guid: 403fe79704f0b1c42bfb836070e6d504, type: 2}
   target5: {fileID: 4348960020675290, guid: 0d564bde60249434f8cff5a722d7bbc6, type: 2}
   target6: {fileID: 4523261810821864, guid: 20b398d493591d0438431af8cd88bc84, type: 2}
-  speed: 10
+  speed: 20
   rotationSpeed: 50

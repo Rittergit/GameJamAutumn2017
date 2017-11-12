@@ -606,7 +606,6 @@ GameObject:
   - component: {fileID: 1143002988}
   - component: {fileID: 1143002987}
   - component: {fileID: 1143002991}
-  - component: {fileID: 1143002992}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -688,27 +687,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c613386a1a82246b23cfbad81050dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  block: {fileID: 4205273797204366, guid: 094fce2c23275b2428394adbf691a233, type: 2}
+  zoomTarget: {fileID: 1492657011}
+  camera: {fileID: 1143002990}
+  zoomSpeed: 5
+  block:
+  - {fileID: 4326547139587158, guid: 09220b02fa6469d49a83f40377ca4088, type: 2}
+  - {fileID: 4750072154666334, guid: 03f1b8ee7cc3df4419eaff075307be8a, type: 2}
+  - {fileID: 4357757515040444, guid: 11c71581584db9d438478af59a1b2a6b, type: 2}
   layersOverall: 5
   minBlocksPerLayer: 1
   maxBlocksPerLayer: 4
-  minSpeed: 5
-  maxSpeed: 6
-  minRangeBetweenBlocks: 10
-  maxRangeBetweenBlocks: 20
---- !u!114 &1143002992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1143002986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feafcb870aea10e4aa2fc0034c137557, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 1492657011}
-  speed: 5
+  minSpeed: 12
+  maxSpeed: 15
+  minRangeBetweenBlocks: 40
+  maxRangeBetweenBlocks: 80
 --- !u!1001 &1236794353
 Prefab:
   m_ObjectHideFlags: 0
