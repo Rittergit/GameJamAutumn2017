@@ -8,6 +8,7 @@ using System.Linq;
 public class PlayerController : MonoBehaviour {
 
 	public Transform healthText;
+    public Transform timerText;
     public Transform target;
     public Transform target2;
     public Transform target3;
@@ -25,18 +26,26 @@ public class PlayerController : MonoBehaviour {
     public AudioClip damage;
     public AudioSource audioplayer;
     private Rigidbody rb;
+    private float startTime;
+    static float gameOverTime;
 
     // Use this for initialization
     void Start () {
         // target.position = GameObject.Find("Spring1").transform.position;
         rb = this.GetComponent<Rigidbody>();
 		healthText.GetComponent<Text>().text = "Health: " + GameSettings.playerLifes;
+        startTime = Time.time;
     }
 	
 	// Update is called once per frame
 	void Update () {
         float step = speed * Time.deltaTime;
         float rotationStep = rotationSpeed * Time.deltaTime;
+        float sek = (float)(System.Math.Round((double)(Time.time - startTime)%60, 2));
+        //float min = (float)(System.Math.Round((double)(Time.time - startTime) / 60, 2));
+
+        // Update Timer Text
+        timerText.GetComponent<Text>().text = "Time: " + sek;
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -128,6 +137,7 @@ public class PlayerController : MonoBehaviour {
 		//TODO (dmartin): Load Game Over Screen
 		if (GameSettings.playerLifes < 1) { 
             SceneManager.LoadScene ("Levels/GameOver");
+            gameOverTime = Time.time - startTime; 
 		}
 	}
 }
