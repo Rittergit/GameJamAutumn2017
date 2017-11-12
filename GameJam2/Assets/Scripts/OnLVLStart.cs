@@ -6,7 +6,7 @@ public class OnLVLStart : MonoBehaviour {
 
     public Transform target;
     public float speed = 5;
-    private bool start;
+    private bool bstart = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -16,12 +16,12 @@ public class OnLVLStart : MonoBehaviour {
 	void Update () {
         if(Input.GetKeyDown(KeyCode.S))
         {
-            start = !start;
+            bstart = true;
         }
-        if (start)
+        if (bstart)
         {
             float step = speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+			transform.position = Vector3.MoveTowards(transform.position, target.position, step);
         }
     }
 }

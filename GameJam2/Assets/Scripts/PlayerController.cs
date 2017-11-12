@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
     void Start () {
         // target.position = GameObject.Find("Spring1").transform.position;
         rb = this.GetComponent<Rigidbody>();
-		healthText.GetComponent<Text>().text = "Lifes: " + GameSettings.playerLifes;
+		healthText.GetComponent<Text>().text = "Health: " + GameSettings.playerLifes;
     }
 	
 	// Update is called once per frame
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour {
 		--GameSettings.playerLifes;
 
 		// Update Life Text
-		healthText.GetComponent<Text>().text = "Lifes: " + GameSettings.playerLifes;
+		healthText.GetComponent<Text>().text = "Health: " + GameSettings.playerLifes;
 
 		//TODO (dmartin): Load Game Over Screen
 		/*
