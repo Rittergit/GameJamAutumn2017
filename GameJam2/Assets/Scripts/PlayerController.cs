@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour {
 
@@ -100,6 +101,9 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col)
 	{
+		Destroy (col.gameObject);
+		LevelBehavior.layers.FirstOrDefault ().Remove (col.GetComponent<Transform> ());
+
 		// Reduce Player Life
 		--GameSettings.playerLifes;
 

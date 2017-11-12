@@ -19,7 +19,7 @@ public class LevelBehavior : MonoBehaviour {
 	//TODO (dmartin): Add time after the level ends
 	// public int finishTime = 60;
 
-	private List<List<Transform>> layers;
+	public static List<List<Transform>> layers;
 	private float currSpeed;
 
 	void Start () {
