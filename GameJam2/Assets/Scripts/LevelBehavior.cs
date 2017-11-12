@@ -92,7 +92,9 @@ public class LevelBehavior : MonoBehaviour {
 
 		foreach (var layer in layers) {
 			foreach (var block in layer) {
-				block.transform.position -= new Vector3 (0, 0, currSpeed / 10);
+				//block.transform.position -= new Vector3 (0, 0, currSpeed / 10);
+				//block.GetComponent<Rigidbody>().MovePosition(block.GetComponent<Rigidbody>().position + new Vector3(0, 0, -(currSpeed/10)));
+				block.transform.Translate(new Vector3(0, 0, -(currSpeed / 10)));
 			}
 		}
 	}

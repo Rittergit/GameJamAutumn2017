@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FlanschenSpawn : MonoBehaviour {
 
+    public float speed = 5;
 	// Use this for initialization
 	void Start () {
 		
@@ -11,6 +12,8 @@ public class FlanschenSpawn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        this.transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        if (this.transform.position.z <= -10)
+            this.transform.position = new Vector3(0,0,120);
+    }
 }
