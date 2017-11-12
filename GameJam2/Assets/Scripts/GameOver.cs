@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour {
 
     public Text scoreText;
-    public PlayerController pc;
+
 
     // Use this for initialization
     void Start () {
-        //scoreText.text = ""+ pc.gameOverTime; 
+       //scoreText.text = ""+ gameOverTime; 
     }
 	
 	// Update is called once per frame
