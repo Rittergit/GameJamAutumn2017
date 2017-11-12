@@ -62,11 +62,11 @@ public class PlayerController : MonoBehaviour {
             up = !up;
             if(up)
             {
-                audioplayer.PlayOneShot(upSound,volume -1.0f);
+                audioplayer.PlayOneShot(upSound,volume);
             }
             else
             {
-                audioplayer.PlayOneShot(downSound, volume - 1.0f);
+                audioplayer.PlayOneShot(downSound, volume);
             }
             /* if(right)
              {

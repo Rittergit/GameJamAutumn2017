@@ -387,7 +387,7 @@ Prefab:
     - target: {fileID: 114770626992520502, guid: e25c437f9b6adcb48ae73948e4a79480,
         type: 2}
       propertyPath: volume
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114770626992520502, guid: e25c437f9b6adcb48ae73948e4a79480,
         type: 2}
@@ -478,7 +478,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 712eb86d68322e042b1517a4f7a5acc2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e378e46e05f833544b3cca425bb9c9cb, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1164,7 +1164,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 0
-  m_Color: {r: 0.7014199, g: 0.66176474, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.1397059, b: 0.90507096, a: 1}
   m_Intensity: 10
   m_Range: 100
   m_SpotAngle: 58
