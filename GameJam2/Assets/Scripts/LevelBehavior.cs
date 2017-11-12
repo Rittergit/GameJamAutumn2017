@@ -40,8 +40,9 @@ public class LevelBehavior : MonoBehaviour {
 				Vector3 rotation;
 				do {
 					rotation = new Vector3 (0, 0, Random.Range (0, 6) * 60);
-				} while(existingblockRotations.Contains (rotation));
 
+				} while(existingblockRotations.Contains (rotation));
+                existingblockRotations.Add(rotation);
 				layer[blockNr].Rotate (rotation);
 			}
 
@@ -84,7 +85,7 @@ public class LevelBehavior : MonoBehaviour {
 						do {
 							rotation = new Vector3 (0, 0, Random.Range (0, 6) * 60);
 						} while(existingblockRotations.Contains (rotation));
-
+                        existingblockRotations.Add(rotation);
 						layer[blockNr].Rotate (rotation);
 					}
 
