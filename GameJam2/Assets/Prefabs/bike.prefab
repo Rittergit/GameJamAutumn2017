@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 64789509768630616}
   - component: {fileID: 33083163688353174}
   - component: {fileID: 23053561653637182}
+  - component: {fileID: 114244475555908206}
   m_Layer: 0
   m_Name: MotorradHinterrad
   m_TagString: Untagged
@@ -335,6 +336,18 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: fb0592546f73f124c88b6c4a4f845dcd, type: 3}
+--- !u!114 &114244475555908206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1350359865235740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2beff41c6e445f248a14a32590821393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 10
 --- !u!114 &114770626992520502
 MonoBehaviour:
   m_ObjectHideFlags: 1
