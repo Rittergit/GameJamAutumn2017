@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -106,10 +107,8 @@ public class PlayerController : MonoBehaviour {
 		healthText.GetComponent<Text>().text = "Health: " + GameSettings.playerLifes;
 
 		//TODO (dmartin): Load Game Over Screen
-		/*
 		if (GameSettings.playerLifes < 1) {
-			Application.LoadLevel("Levels/EndingScene");
+			SceneManager.LoadScene ("Levels/GameOver");
 		}
-		*/
 	}
 }
