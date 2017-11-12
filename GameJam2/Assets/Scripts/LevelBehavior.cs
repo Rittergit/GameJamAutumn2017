@@ -26,7 +26,7 @@ public class LevelBehavior : MonoBehaviour {
 
 		for (var layerNr = 0; layerNr < layersOverall; ++layerNr) {
 			var layer = new List<Transform> ();
-			var blocksPerLayer = Random.Range (minBlocksPerLayer, maxBlocksPerLayer);
+			var blocksPerLayer = Random.Range (minBlocksPerLayer, maxBlocksPerLayer + 1);
 
 			lastRange = Random.Range (minRangeBetweenBlocks, maxRangeBetweenBlocks) + lastRange;
 
@@ -48,12 +48,17 @@ public class LevelBehavior : MonoBehaviour {
 
 	void FixedUpdate () {
 		// Destroy oldObjects
-		foreach (var layer in layers) {
-			foreach (var block in layer) {
+		for (var layerNr = 0; layerNr < layers.Count; ++layerNr) {
+			var removeLayer = false;
+			foreach (var block in layers[layerNr]) {
 				if (block.position.z < -1.3f) {
 					Destroy (block.gameObject);
-					layers.Remove (layer);
+					removeLayer = true;
 				}
+			}
+
+			if (removeLayer) {
+				layers.Remove (layers [layerNr]);
 			}
 		}
 
@@ -66,7 +71,7 @@ public class LevelBehavior : MonoBehaviour {
 					var firstBlock = lastLayer.FirstOrDefault ();
 					var lastRange = Random.Range (minRangeBetweenBlocks, maxRangeBetweenBlocks) + firstBlock.position.z;
 					var layer = new List<Transform> ();
-					var blocksPerLayer = Random.Range (minBlocksPerLayer, maxBlocksPerLayer);
+					var blocksPerLayer = Random.Range (minBlocksPerLayer, maxBlocksPerLayer + 1);
 
 					var existingblockRotations = new List<Vector3> ();
 					for (var blockNr = 0; blockNr < blocksPerLayer; ++blockNr) {
