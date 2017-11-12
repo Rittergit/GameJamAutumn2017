@@ -19,7 +19,13 @@ public class PlayerController : MonoBehaviour {
     private bool up;
     private bool left;
     private bool right;
+    public float volume;
+    public AudioClip upSound;
+    public AudioClip downSound;
+    public AudioClip damage;
+    public AudioSource audioplayer;
     private Rigidbody rb;
+
     // Use this for initialization
     void Start () {
         // target.position = GameObject.Find("Spring1").transform.position;
@@ -54,16 +60,24 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown("space"))
         {
             up = !up;
-           /* if(right)
+            if(up)
             {
-                right = false;
-                left = true;
+                audioplayer.PlayOneShot(upSound,volume -1.0f);
             }
-            else if(left)
+            else
             {
-                left = false;
-                right = true;
-            }*/
+                audioplayer.PlayOneShot(downSound, volume - 1.0f);
+            }
+            /* if(right)
+             {
+                 right = false;
+                 left = true;
+             }
+             else if(left)
+             {
+                 left = false;
+                 right = true;
+             }*/
         }
 
         if (!up && right)
@@ -102,7 +116,8 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter(Collider col)
 	{
 		Destroy (col.gameObject);
-		LevelBehavior.layers.FirstOrDefault ().Remove (col.GetComponent<Transform> ());
+        audioplayer.PlayOneShot(damage, volume);
+        LevelBehavior.layers.FirstOrDefault ().Remove (col.GetComponent<Transform> ());
 
 		// Reduce Player Life
 		--GameSettings.playerLifes;
@@ -111,8 +126,8 @@ public class PlayerController : MonoBehaviour {
 		healthText.GetComponent<Text>().text = "Health: " + GameSettings.playerLifes;
 
 		//TODO (dmartin): Load Game Over Screen
-		if (GameSettings.playerLifes < 1) {
-			SceneManager.LoadScene ("Levels/GameOver");
+		if (GameSettings.playerLifes < 1) { 
+            SceneManager.LoadScene ("Levels/GameOver");
 		}
 	}
 }
